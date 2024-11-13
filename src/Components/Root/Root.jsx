@@ -1,10 +1,15 @@
+import { Outlet } from "react-router-dom";
+import NavBar from "../../NavBar/NavBar";
+import Footer from "./Footer/Footer";
 
 const Root = () => {
     return (
-        <div>
-            <h2 className="font-bold text-4xl m-8">Hellow Froom Root</h2>
+        <div className="max-w-6xl mx-auto">
+            <NavBar></NavBar>
+            <Outlet></Outlet>
+            <Footer></Footer>
         </div>
-    );
+    ); 
 };
 
 export default Root;

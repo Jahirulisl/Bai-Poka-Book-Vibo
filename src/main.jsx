@@ -9,11 +9,32 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Root from './Components/Root/Root';
+import ErrorPage from './Components/ErrorPage/ErrorPage';
+import Home from './Components/Home/Home';
+import DashBoard from './Components/DashBoard/DashBoard';
+import BookDetail from './Components/BookDetail/BookDetail';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element:<Root></Root>,
+    element: <Root></Root>,
+    errorElement:<ErrorPage></ErrorPage>,
+    children:[
+      {
+        path:'/',
+        element:<Home></Home>
+      },
+      {
+       path:'books/:bookId',
+       element:<BookDetail></BookDetail>,
+       loader:()=>fetch('booksData.json')
+      },
+      {
+        path:'dashboard',
+        element:<DashBoard></DashBoard>
+      }
+    ]
+
   },
 ]);
 
@@ -24,3 +45,4 @@ createRoot(document.getElementById('root')).render(
       <RouterProvider router={router} />
   </StrictMode>,
 )
+
